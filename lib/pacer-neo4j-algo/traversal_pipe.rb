@@ -1,6 +1,7 @@
 module Pacer::Neo4j::Algo
   class TraversalPipe < Pacer::Pipes::RubyPipe
     def initialize(graph, block)
+      super()
       @graph = graph
       @block = block
       reset
@@ -26,8 +27,8 @@ module Pacer::Neo4j::Algo
     private
 
     def prepare_traverser
-      @traverser.from = starts.next.getRawElement
-      @iterator = @traverser.iterator.to_enum
+      @traverser.from = @starts.next.getRawElement
+      @iterator = @traverser.iterator.map { |x| x }.to_enum
     end
   end
 end
