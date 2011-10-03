@@ -1,11 +1,11 @@
-= Pacer::Neo4j::Algo
+# Pacer::Neo4j::Algo
 
 This project ties the two primary ways of using Neo4j in JRuby together.
 It allows Neo4J's proprietary features to be used together with Pacer
 and the Tinkerpop stack's graph agnostic features for maximum graphing
 power!
 
-== Examples
+## Examples
 
 Here is a simple example that creates a Neo4J graph, adds 10 vertices,
 strings them together in series with the edge label "label", then runs a
