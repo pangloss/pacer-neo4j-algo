@@ -28,7 +28,7 @@ module Pacer::Neo4j::Algo
 
     def prepare_traverser
       @traverser.from = @starts.next.getRawElement
-      @iterator = @traverser.iterator.map { |x| x }.to_enum
+      @iterator = @traverser.to_enum
     end
   end
 end
