@@ -1,10 +1,10 @@
 module Pacer::Neo4j::Algo
   class TraversalPipe < Pacer::Pipes::RubyPipe
-    def initialize(graph, block)
+    def initialize(graph, traverser)
       super()
       @graph = graph
-      @block = block
-      reset
+      @traverser = traverser
+      @iterator = nil
     end
 
     def processNextStart
@@ -19,9 +19,8 @@ module Pacer::Neo4j::Algo
     end
 
     def reset
-      @traverser = ::Neo4j::Traversal::Traverser.new(nil)
-      @block.call(@traverser)
       @iterator = nil
+      super
     end
 
     private

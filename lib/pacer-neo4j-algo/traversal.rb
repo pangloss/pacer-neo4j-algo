@@ -9,15 +9,20 @@ module Pacer::Neo4j::Algo
     attr_reader :traverser
 
     def after_initialize
-      raise ArgumentError, 'traversal route must have a block' unless @block
+      raise ArgumentError, 'traversal initialized without a traverser' unless @traverser
     end
 
     def block=(block)
-      @block = block
+      @traverser = ::Neo4j::Traversal::Traverser.new(nil)
+      block.call(@traverser)
+    end
+
+    def traverser=(t)
+      @traverser = t
     end
 
     def attach_pipe(end_pipe)
-      TraversalPipe.new(graph, @block).tap do |pipe|
+      TraversalPipe.new(graph, traverser).tap do |pipe|
         pipe.setStarts end_pipe if end_pipe
       end
     end
