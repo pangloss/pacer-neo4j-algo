@@ -38,3 +38,11 @@ end
 require 'pacer-neo4j-algo/support/neo4j_traverser'
 require 'pacer-neo4j-algo/traversal'
 require 'pacer-neo4j-algo/traversal_pipe'
+
+require 'pacer-neo4j-algo/support/neo4j_algo'
+require 'pacer-neo4j-algo/algo'
+require 'pacer-neo4j-algo/algo_pipe'
+
+require 'pacer-neo4j-algo/support/transaction_data'
+require 'pacer-neo4j-algo/support/property_entry'
+require 'pacer-neo4j-algo/transaction_handler'
