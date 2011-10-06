@@ -1,6 +1,21 @@
 module Pacer::Neo4j::Algo
   module Algo
     module AlgoMixin
+
+      # See http://neo4j.rubyforge.org/guides/algo.html and 
+      # https://github.com/andreasronge/neo4j/blob/master/lib/neo4j/algo/algo.rb#L203
+      # for info about the available algorithms.
+      #
+      # Currently available options:
+      # * all_paths
+      # * all_simple_paths
+      # * shortest_paths
+      # * dijkstra_paths
+      # * a_star_paths
+      # * with_length_paths
+      #
+      # Also available in singular versions that only return one path
+      # per input vertex.
       def algo(name, args, &block)
         if Pacer.vertex? args
           chain_route transform: Algo, algo_name: name, to: args, block: block
