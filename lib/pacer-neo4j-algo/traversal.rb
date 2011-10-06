@@ -1,12 +1,16 @@
 module Pacer::Neo4j::Algo
   module Traversal
     module RouteMixin
-      def traversal(&block)
-        chain_route transform: Traversal, block: block
+      def traversal(traverser = nil, &block)
+        if traverser
+          chain_route transform: Traversal, traverser: traverser
+        else
+          chain_route transform: Traversal, block: block
+        end
       end
     end
 
-    attr_reader :traverser
+    attr_accessor :traverser
 
     def after_initialize
       raise ArgumentError, 'traversal initialized without a traverser' unless @traverser
@@ -15,10 +19,6 @@ module Pacer::Neo4j::Algo
     def block=(block)
       @traverser = ::Neo4j::Traversal::Traverser.new(nil)
       block.call(@traverser)
-    end
-
-    def traverser=(t)
-      @traverser = t
     end
 
     def attach_pipe(end_pipe)
